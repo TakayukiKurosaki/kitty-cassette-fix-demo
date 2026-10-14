@@ -1,13 +1,25 @@
 'use strict';
-// ゲームボーイ風ドット描画の共通ヘルパー（KITTY FLAP / KITTY MERGE）
 (function(root){
-const P={};
-// map: 文字列配列。'.' は透明、それ以外は palette の色
-P.map=function(g,map,pal,x,y,px){for(let r=0;r<map.length;r++)for(let c=0;c<map[r].length;c++){const k=map[r][c];if(k==='.'||!pal[k])continue;g.fillStyle=pal[k];g.fillRect(Math.round(x+c*px),Math.round(y+r*px),Math.ceil(px),Math.ceil(px))}};
-// 中心 (cx,cy) にマップを置く
-P.mapC=function(g,map,pal,cx,cy,px){P.map(g,map,pal,cx-map[0].length*px/2,cy-map.length*px/2,px)};
-// ドットの円（セル単位で塗る）
-P.disc=function(g,cx,cy,r,fill,edge,cell){cell=cell||Math.max(3,Math.round(r/6));const n=Math.ceil(r/cell);for(let i=-n;i<n;i++)for(let j=-n;j<n;j++){const px=(i+.5)*cell,py=(j+.5)*cell,d=Math.hypot(px,py);if(d>r)continue;g.fillStyle=edge&&d>r-cell*1.1?edge:fill;g.fillRect(Math.round(cx+i*cell),Math.round(cy+j*cell),cell,cell)}};
-P.text=function(g,t,x,y,size,color,align){g.save();g.font=`bold ${size}px "Courier New",monospace`;g.textAlign=align||'center';g.textBaseline='middle';g.fillStyle=color;g.fillText(t,x,y);g.restore()};
-root.KittyPixel=P;
-})(typeof window!=='undefined'?window:globalThis);
+  function map(g, rows, pal, x, y, px){
+    rows.forEach((row,j)=>Array.from(row).forEach((ch,i)=>{
+      if(ch==='.' || !pal[ch]) return;
+      g.fillStyle=pal[ch];
+      g.fillRect(Math.round(x+i*px),Math.round(y+j*px),Math.ceil(px),Math.ceil(px));
+    }));
+  }
+  function mapC(g, rows, pal, cx, cy, px){map(g,rows,pal,cx-rows[0].length*px/2,cy-rows.length*px/2,px)}
+  function disc(g,cx,cy,r,fill,edge,cell=Math.max(3,Math.round(r/6))){
+    if(!(r>0 && cell>0)) return;
+    for(let y=-r;y<r;y+=cell) for(let x=-r;x<r;x+=cell){
+      const d=Math.hypot(x+cell/2,y+cell/2);
+      if(d>r) continue;
+      g.fillStyle=d>r-cell*1.1?edge:fill;
+      g.fillRect(Math.round(cx+x),Math.round(cy+y),Math.ceil(cell),Math.ceil(cell));
+    }
+  }
+  function text(g,t,x,y,size=20,color='#2b1b30',align='center'){
+    g.font=`bold ${size}px "Courier New",monospace`;
+    g.fillStyle=color;g.textAlign=align;g.textBaseline='middle';g.fillText(String(t),x,y);
+  }
+  root.KittyPixel={map,mapC,disc,text};
+})(typeof window==='undefined'?globalThis:window);
