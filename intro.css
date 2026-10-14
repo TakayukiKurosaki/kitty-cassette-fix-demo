@@ -11,8 +11,8 @@
 .ci-back{background-image:url('assets/handheld_back.png');transform:rotateY(180deg)}
 /* the cassette lives on the back face, inside the stage — never above the handheld top edge region of the header */
 .ci-cart{position:absolute;left:17.5%;width:65%;top:3.2%;height:20%;border:2px solid #8c8b83;border-radius:6px 6px 3px 3px;background:linear-gradient(120deg,#cbc9bd,#adad9f);box-shadow:0 4px 10px #353d3033;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4%;font-family:monospace;color:#5d6b55;transform:translateY(-118%);opacity:0;transition:transform .75s cubic-bezier(.3,.7,.3,1),opacity .25s}
-.ci-cart b{font-size:clamp(11px,2.6vmin,20px);letter-spacing:2px}
-.ci-cart strong{width:80%;text-align:center;background:#f4e7e8;border:1px solid #a9a597;border-radius:3px;padding:5% 2%;font-size:clamp(9px,1.8vmin,14px);color:#4b3443}
+.ci-cart:not(.cloned)>b{font-size:clamp(11px,2.6vmin,20px);letter-spacing:2px}
+.ci-cart:not(.cloned)>strong{width:80%;text-align:center;background:#f4e7e8;border:1px solid #a9a597;border-radius:3px;padding:5% 2%;font-size:clamp(9px,1.8vmin,14px);color:#4b3443}
 .ci-cart.in{opacity:1;transform:translateY(0)}
 .ci-cart.drop{opacity:1;transform:translateY(-55%)}
 .ci-pocket{position:absolute;inset:0;background:url('assets/handheld_back.png') center/100% 100% no-repeat;clip-path:inset(23.4% 0 0 0);pointer-events:none}

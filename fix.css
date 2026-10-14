@@ -10,3 +10,13 @@
 .catch-hud #combo{font-size:12px!important}
 body.intro-active main{visibility:hidden}
 @media(max-width:650px){.screen-bottom{font-size:11px!important}.catch-hud #combo{font-size:10px!important}}
+
+/* 差し込むカセット＝一覧カセットの複製（縦横比・デザイン一致）。動きは元の差し込み（上から1.1sで差し込む）と同じ */
+.insert-cartridge.replaced{display:none!important}
+.kitty-insert{display:none;position:absolute;left:50%;transform:translateX(-50%);z-index:1;opacity:0;top:var(--cart-from,-40%);transition:top 1.1s cubic-bezier(.4,0,.2,1),opacity .2s;pointer-events:none}
+.boot-mode .kitty-insert{display:block}
+.show-back .kitty-insert{opacity:1}
+.inserting .kitty-insert{top:var(--cart-to,-6%)}
+.ci-cart.cloned{background:none;border:0;box-shadow:none;display:block;padding:0}
+.kitty-insert .cartridge,.ci-cart.cloned .cartridge{box-shadow:0 3px 0 #667b71,0 6px 10px #25382f33}
+@media(prefers-reduced-motion:reduce){.kitty-insert{transition:none}}

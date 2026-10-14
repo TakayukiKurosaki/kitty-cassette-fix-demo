@@ -1,6 +1,25 @@
 'use strict';
 // Shared cassette boot intro. playCassetteIntro({title}) -> Promise resolved when the game should be visible.
 (function(){
+// fix版: 差し込むカセットを一覧のカセットと同じデザイン・縦横比にする（一覧のDOMを複製して縮小）。
+window.kittyCartSource=function(game){
+ const listed=document.querySelector('[data-game="'+game+'"] .cartridge');if(listed&&listed.getBoundingClientRect().width)return listed;
+ if(game!=='catch')return null;
+ // catch.html には一覧が無いので、一覧と同じCSS構造で不可視の計測用コピーを置く
+ const m=document.createElement('section');m.className='library';m.setAttribute('aria-hidden','true');
+ m.style.cssText='display:block;position:absolute;left:0;right:0;top:0;visibility:hidden;pointer-events:none';
+ m.innerHTML='<div class="cartridges"><div class="cartridge-card">'+'<div class="cartridge pink-cartridge"><div class="cart-ridges"></div><div class="cart-label catch-label"><span>UNI / VOL.01</span><div class="catch-art">♡<i>✦</i><b>♡</b></div><strong>KITTY<br>CATCH</strong><small>A LITTLE SWEET CHAOS</small></div><div class="cart-base">▥ ▥ ▥ ▥ ▥</div></div>'+'</div><div class="cartridge-card"></div></div>';
+ (document.querySelector('main')||document.body).appendChild(m);window.__kittyMeasure=m;return m.querySelector('.cartridge');
+};
+window.kittyCloneCart=function(host,game,slotW,src,rect){
+ src=src||window.kittyCartSource(game);if(!src||!host)return false;
+ const r=rect&&rect.width?rect:src.getBoundingClientRect();if(!(r.width>0&&r.height>0))return false;
+ const k=slotW/r.width,c=src.cloneNode(true);
+ c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+ c.style.cssText='position:absolute;left:0;top:0;margin:0;max-width:none;outline:none;width:'+r.width+'px;height:'+r.height+'px;transform:scale('+k+');transform-origin:0 0';
+ host.replaceChildren(c);host.classList.add('cloned');host.style.width=slotW+'px';host.style.height=(r.height*k)+'px';host.dataset.ar=(r.width/r.height).toFixed(3);
+ window.__kittyMeasure?.remove();window.__kittyMeasure=null;return true;
+};
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 window.playCassetteIntro=function({title='KITTY CATCH'}={}){
  return new Promise(resolve=>{
@@ -23,6 +42,7 @@ window.playCassetteIntro=function({title='KITTY CATCH'}={}){
    cam.style.transform=`translate(${vw/2-(sx+sw/2)*k}px,${vh/2-(sy+sh/2)*k}px) scale(${k})`;
   }
   layout();addEventListener('resize',layout);
+  try{const sw=parseFloat(stage.style.width);if(window.kittyCloneCart(cart,/SURVIVOR/.test(title)?'survivor':'catch',sw*.5)){cart.style.left=(sw*.25)+'px';cart.style.top='-6%'}}catch(e){/* 複製できなければ従来のカセット表示のまま */}
   function finish(){if(finished)return;finished=true;removeEventListener('resize',layout);root.classList.add('done');document.body.classList.remove('intro-active');resolve();setTimeout(()=>root.remove(),500)}
   const skip=e=>{e?.preventDefault?.();finish()};
   root.addEventListener('pointerdown',skip);addEventListener('keydown',function k(e){if(finished){removeEventListener('keydown',k);return}removeEventListener('keydown',k);skip(e)});
