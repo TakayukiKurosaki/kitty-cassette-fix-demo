@@ -1,0 +1,33 @@
+/* Cassette boot intro: one continuous sequence (flip → insert → flip back → power on → zoom into screen). */
+#cassette-intro{position:fixed;inset:0;z-index:9999;background:#f7f6f2;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .45s ease}
+#cassette-intro.done{opacity:0;pointer-events:none}
+.ci-camera{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:0 0;will-change:transform}
+.ci-camera.zoom{transition:transform 1.25s cubic-bezier(.55,0,.25,1)}
+.ci-stage{position:absolute;perspective:1600px}
+.ci-body{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.45,.05,.3,1)}
+.ci-body.back{transform:rotateY(180deg)}
+.ci-face{position:absolute;inset:0;background:center/100% 100% no-repeat;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.ci-front{background-image:url('assets/handheld_front.png')}
+.ci-back{background-image:url('assets/handheld_back.png');transform:rotateY(180deg)}
+/* the cassette lives on the back face, inside the stage — never above the handheld top edge region of the header */
+.ci-cart{position:absolute;left:17.5%;width:65%;top:3.2%;height:20%;border:2px solid #8c8b83;border-radius:6px 6px 3px 3px;background:linear-gradient(120deg,#cbc9bd,#adad9f);box-shadow:0 4px 10px #353d3033;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4%;font-family:monospace;color:#5d6b55;transform:translateY(-118%);opacity:0;transition:transform .75s cubic-bezier(.3,.7,.3,1),opacity .25s}
+.ci-cart b{font-size:clamp(11px,2.6vmin,20px);letter-spacing:2px}
+.ci-cart strong{width:80%;text-align:center;background:#f4e7e8;border:1px solid #a9a597;border-radius:3px;padding:5% 2%;font-size:clamp(9px,1.8vmin,14px);color:#4b3443}
+.ci-cart.in{opacity:1;transform:translateY(0)}
+.ci-cart.drop{opacity:1;transform:translateY(-55%)}
+.ci-pocket{position:absolute;inset:0;background:url('assets/handheld_back.png') center/100% 100% no-repeat;clip-path:inset(23.4% 0 0 0);pointer-events:none}
+.ci-screen{position:absolute;left:27.4%;top:14.4%;width:45.2%;height:26.2%;background:#9aa36f;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:monospace;color:#3c4630;transition:background .3s}
+.ci-screen.on{background:#b9c487}
+.ci-screen.flicker{animation:ciFlicker .45s steps(2,end) 1}
+@keyframes ciFlicker{0%{background:#e9f1c4}25%{background:#8b935f}50%{background:#dfe8b5}75%{background:#9aa36f}100%{background:#b9c487}}
+.ci-logo{font:900 clamp(14px,4.2vmin,34px)/1 system-ui,sans-serif;letter-spacing:-1px;transform:translateY(-140%);opacity:0;transition:transform .7s steps(8,end),opacity .1s}
+.ci-logo span{color:#8a3c62}
+.ci-screen.boot .ci-logo{transform:none;opacity:1}
+.ci-boottext{font-size:clamp(6px,1.3vmin,11px);letter-spacing:1px;margin-top:8%;opacity:0;transition:opacity .2s .5s}
+.ci-screen.boot .ci-boottext{opacity:1}
+.ci-led{position:absolute;left:19.3%;top:25.6%;width:2.2%;aspect-ratio:1;border-radius:50%;background:#55505a;transition:background .2s,box-shadow .2s}
+.ci-led.on{background:#ff3d6e;box-shadow:0 0 8px 2px #ff3d6eaa}
+.ci-skip{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;font:600 13px/1.4 system-ui,sans-serif;color:#57534c;letter-spacing:.5px}
+.ci-caption{position:absolute;top:max(18px,env(safe-area-inset-top));left:0;right:0;text-align:center;font:600 14px/1.4 system-ui,sans-serif;color:#3e3b36}
+#cassette-intro.zooming .ci-skip,#cassette-intro.zooming .ci-caption{opacity:0;transition:opacity .3s}
+@media(prefers-reduced-motion:reduce){.ci-camera.zoom,.ci-body,.ci-cart,.ci-logo{transition:none}.ci-screen.flicker{animation:none}}

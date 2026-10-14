@@ -1,0 +1,52 @@
+/* The supplied 840 × 1280 front/back images are used unchanged. */
+.boot-mode{background-color:#f7f6f2}.boot-mode .device{width:min(380px,90vw);max-width:380px;margin:160px auto 85px;transition:width 1.1s ease,max-width 1.1s ease,margin 1.1s ease}.boot-mode .console-turntable{aspect-ratio:840/1280}.boot-mode .console-front,.boot-mode .console-back{position:absolute;inset:0;padding:0;min-height:0;height:100%;width:100%;border:0;border-radius:0;box-shadow:none;background-color:transparent;background-repeat:no-repeat;background-size:100% 100%;background-position:center}.boot-mode .console-front{background-image:url('assets/handheld_front.png')}.boot-mode .console-back{background-image:url('assets/handheld_back.png')}.boot-mode .device-label,.boot-mode .device-controls,.boot-mode .grooves{display:none}.boot-mode .screen-frame{position:absolute;left:27.4%;top:14.5%;width:45.2%;height:26%;border:0;border-radius:2px;background:#b6c184;overflow:hidden;transition:left 1.1s ease,top 1.1s ease,width 1.1s ease,height 1.1s ease}.boot-mode .viewport{width:100%;height:100%;min-height:0;max-height:none;background:#b6c184}.boot-mode #boot{padding:8px;background:#b6c184;color:#475238}.boot-mode .boot-mark{font-size:clamp(23px,7vw,38px);letter-spacing:-2px;color:#475238;gap:10px}.boot-mode .boot-mark span{font-size:25px;color:#59603f}.boot-mode #boottext{font-family:monospace;font-size:7px;line-height:1.5;letter-spacing:.5px;color:#475238;margin:10px 0}.boot-mode .boot-dots{font-size:6px;color:#677242;letter-spacing:5px}.boot-mode .back-brand,.boot-mode .rear-slot,.boot-mode .rear-label,.boot-mode .battery-cover,.boot-mode .screw{display:none}.boot-mode .console-back .insert-cartridge{width:60%;height:auto;aspect-ratio:1.42;left:50%;top:-32%;padding:10px;border-color:#8c8b83;background:linear-gradient(120deg,#cbc9bd,#adad9f);box-shadow:0 3px 8px #353d302b}.boot-mode .console-back .insert-cartridge span{font-size:18px}.boot-mode .console-back .insert-cartridge strong{font-size:12px;background:#f4e7e8;border:1px solid #a9a597;border-radius:3px;padding:12px 4px;margin:5px 0}.boot-mode.inserting .console-back .insert-cartridge{top:3.4%}.boot-mode .rear-pocket{inset:0;transform:none;width:100%;height:100%;padding:0;border:0;border-radius:0;box-shadow:none;background:url('assets/handheld_back.png') center/100% 100% no-repeat;clip-path:inset(23.7% 0 0 0);z-index:2;pointer-events:none}.boot-mode .rear-pocket span{display:none}.boot-mode.expanding .device{width:100%;max-width:1080px;margin-top:30px}.boot-mode.expanding .console-turntable{aspect-ratio:auto;height:65vh;max-height:650px;min-height:380px;transition:height 1.1s ease}.boot-mode.expanding .console-front{padding:0;background-size:221% 384%;background-position:50% 20%;transition:background-size 1.1s ease,background-position 1.1s ease}.boot-mode.expanding .screen-frame{left:0;top:0;width:100%;height:100%;border-radius:6px}.boot-mode.expanding .viewport{height:100%;max-height:none;min-height:0}.boot-mode.expanding .boot-mark{font-size:55px}.boot-mode.expanding #boottext{font-size:12px}.game-mode .console-front{background:linear-gradient(125deg,#e2e0d7,#cac8be);border-color:#a29f96}.game-mode .screen-frame{border-color:#8c8a9b}.game-mode .buttons button{background:#cbc7c0;border-color:#a29e95}.game-mode .device-label{color:#726e79}@media(max-width:650px){.boot-mode .device{width:min(330px,88vw);margin-top:145px}.boot-mode .console-front,.boot-mode .console-back{min-height:0}.boot-mode.expanding .device{width:100%;max-width:100%;margin-top:25px}.boot-mode .console-back .insert-cartridge strong{padding:9px 4px;font-size:11px}.boot-mode .console-back .insert-cartridge span{font-size:16px}.boot-mode.expanding .console-turntable{height:66vh}.boot-mode .viewport{min-height:0}.boot-mode .screen-frame{border-width:0}}@media(prefers-reduced-motion:reduce){.boot-mode .device,.boot-mode .screen-frame,.boot-mode.expanding .console-front,.boot-mode.expanding .console-turntable{transition:none}}
+
+/* Keep the field and its controls together within ordinary browser heights. */
+.game-mode main{padding-top:12px}
+.game-mode header{padding-bottom:10px}
+.game-mode .headline{padding:12px 0}
+.game-mode .headline .eyebrow{display:none}
+.game-mode h1{font-size:25px;letter-spacing:-1px;margin:0}
+.game-mode h1 span{display:inline}
+.game-mode .subtitle{margin:0;font-size:11px}
+.game-mode .console-front{padding:10px 12px 12px}
+.game-mode .device-label{padding-bottom:8px}
+.game-mode .viewport{height:calc(100svh - 340px);min-height:300px;max-height:650px}
+.game-mode .device-controls{margin-top:10px;gap:10px}
+.game-mode .dpad{font-size:32px}
+.game-mode .control-help p{margin:0;font-size:11px}
+.game-mode .buttons button{min-height:40px;font-size:10px}
+.game-mode .grooves{display:none}
+.game-mode .panel{padding:16px 12px;overflow-y:auto}
+.game-mode .cat-icon{font-size:30px;margin-bottom:6px}
+.game-mode .panel h2{font-size:28px;margin:12px 0 8px}
+.game-mode .panel p{margin:7px 0;font-size:12px}
+.game-mode .primary{padding:12px 24px;margin-top:8px}
+.game-mode .hint{margin-top:12px!important;font-size:11px!important}
+.game-mode .record{font-size:11px}
+.game-mode .instructions p{font-size:12px;color:#4f5e4d}
+.game-mode .device:fullscreen .viewport{height:auto;min-height:0;max-height:none}
+.game-mode .device:fullscreen .control-help{display:none}
+.game-mode .device:fullscreen .screen-frame{height:calc(100% - 50px)}
+@media(max-width:650px){
+ .game-mode main{padding:10px 8px}
+ .game-mode .logo{font-size:24px}
+ .game-mode header{padding-bottom:8px}
+ .game-mode .headline{padding:10px 2px}
+ .game-mode h1{font-size:23px}
+ .game-mode .console-front{padding:8px 6px 10px}
+ .game-mode .viewport{height:calc(100svh - 270px);min-height:330px;max-height:650px}
+ .game-mode .buttons{gap:5px;justify-content:center}
+ .game-mode .buttons button{min-height:42px;font-size:9px;padding:8px 7px}
+ .game-mode .device-controls{margin-top:8px}
+ .game-mode .instructions{grid-template-columns:1fr;gap:4px;margin:22px 6px}
+ .game-mode .instructions b{font-size:10px}
+ .game-mode .instructions p{font-size:12px;margin:6px 0}
+ .game-mode #cards button{padding:10px 12px}
+ .game-mode #cards small{font-size:11px;line-height:1.5}
+ .game-mode #cards strong{font-size:13px}
+}
+@media(max-height:580px){
+ .game-mode .panel{justify-content:safe center}
+ .game-mode .cat-icon{display:none}
+}

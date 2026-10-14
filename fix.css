@@ -1,0 +1,12 @@
+/* fix版: プレイエリアを画面いっぱいに / 小さく薄い文字を読みやすく */
+.catch-mode #game{width:100%!important;height:100%!important;display:block;touch-action:none}
+.catch-mode .viewport{background:#fff2fa}
+.screen-bottom{font-size:12px!important;letter-spacing:.5px!important;color:#f3eef2!important;padding:7px 10px!important}
+.screen-bottom span:first-child{color:#ffd0e6!important;font-weight:700}
+.control-help p{font-size:13px!important;color:#2e2a31!important}
+.control-help p span{font-size:11px!important;color:#4a4550!important;opacity:1!important}
+.control-help .dpad{font-size:26px}
+.panel .hint{font-size:13px!important;color:#e9e1ec!important;opacity:1!important}
+.catch-hud #combo{font-size:12px!important}
+body.intro-active main{visibility:hidden}
+@media(max-width:650px){.screen-bottom{font-size:11px!important}.catch-hud #combo{font-size:10px!important}}

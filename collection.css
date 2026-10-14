@@ -1,0 +1,89 @@
+/* Shared collection navigation and game shell. */
+[hidden]{display:none!important}
+.collection-back{color:#473944;background:#fff8ee;border:1px solid #94838e;border-radius:6px;padding:10px 12px;font: bold 12px Meiryo,sans-serif;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.collection-back:focus-visible{outline:3px solid #ad3c63;outline-offset:3px}
+.library-mode .collection-back{display:none}
+.boot-mode header{position:relative;z-index:20}
+.game-mode .edition,.boot-mode .edition{display:none}
+.catch-hud b{font-size:15px;color:var(--pink)}
+.catch-hud #combo{font-size:10px;color:var(--green)}
+/* Letterbox the square field instead of stretching the cat and hit areas. */
+.catch-mode .viewport{display:flex;justify-content:center;align-items:center;background:#172b2b}
+.catch-mode #game{width:var(--catch-side,100%);height:var(--catch-side,100%);flex:none}
+.game-mode .device:fullscreen{overflow:auto}
+@media(max-width:650px){.collection-back{font-size:11px;padding:8px}.game-mode .logo span,.boot-mode .logo span{display:none}.game-mode .buttons{width:100%}.game-mode .control-help{display:none}}
+
+/* Stable selection geometry: button content cannot center itself vertically. */
+html{scrollbar-gutter:stable}
+body{overflow-x:clip}
+.cartridges{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.cartridge-card{display:grid;grid-template-rows:auto 1fr;align-content:start;align-items:start;min-width:0;width:100%;transform:none;transition:none}
+.cartridge-card:hover{transform:none}
+.cartridge{width:100%;min-width:0;align-self:start}
+.cart-label{min-width:0;min-height:0;grid-template-rows:10px minmax(0,1fr) auto 8px}
+.cart-label svg,.catch-art{min-width:0;min-height:0;overflow:hidden}
+.card-caption{width:100%;min-width:0}
+@media(hover:hover) and (pointer:fine){.cartridge-card:hover .cartridge{outline:2px solid #ad3c63;outline-offset:4px}}
+
+/* One height budget includes the HUD and controls instead of only the canvas. */
+:root{--safe-bottom:env(safe-area-inset-bottom,0px)}
+.game-mode .device{width:100%;height:var(--game-device-height,calc(100svh - 140px));margin:0;min-width:0;min-height:0;max-width:100%;max-height:none}
+.game-mode .console-turntable{height:100%;min-height:0}
+.game-mode .console-front{display:flex;flex-direction:column;height:100%;min-height:0;max-width:100%}
+.game-mode .device-label{flex:none}
+.game-mode .screen-frame{display:flex;flex-direction:column;flex:1;min-width:0;min-height:0}
+.game-mode .hud,.game-mode .xp-track,.game-mode .screen-bottom{flex:none}
+.game-mode .viewport{flex:1;height:auto;min-height:0;max-height:none;min-width:0}
+.game-mode .device-controls{flex:none;min-width:0}
+.game-mode .panel{justify-content:flex-start;justify-content:safe center;min-height:0}
+.game-mode .panel>*{flex-shrink:0}
+.game-mode .primary{max-width:100%;min-width:min(230px,100%)}
+.game-mode .device:fullscreen{height:100%;width:100%;overflow:hidden}
+.game-mode .device:fullscreen .screen-frame{height:auto;min-height:0;flex:1}
+.game-mode .device:fullscreen .viewport{flex:1;min-height:0;height:auto;max-height:none}
+
+/* A small phone also needs to fit the unexpanded handheld and insertion path. */
+.boot-mode main{padding-top:10px}
+.boot-mode .device{width:var(--boot-width,min(300px,80vw));max-width:100%;margin:var(--boot-top-gap,90px) auto 60px}
+.boot-mode.expanding .device{width:100%;max-width:100%;margin:16px auto 20px}
+.boot-mode.expanding .console-turntable{height:var(--expansion-height,calc(100svh - 160px));min-height:0;max-height:none}
+.boot-mode .boot-mark{font-size:clamp(16px,6vw,32px)}
+.boot-mode .boot-mark span{font-size:1em}
+.boot-mode #boottext{margin:6px 0}
+.boot-mode .console-back .insert-cartridge{padding:4%;overflow:hidden}
+.boot-mode .console-back .insert-cartridge span{font-size:clamp(10px,4vw,16px)}
+.boot-mode .console-back .insert-cartridge strong{padding:8% 2%;font-size:clamp(7px,2.8vw,11px)}
+.boot-mode #sequencecaption{bottom:-48px}
+
+@media(max-width:650px){
+ .cart-label{grid-template-rows:6px minmax(0,1fr) auto 5px}
+ .game-mode main,.boot-mode main{padding:10px max(8px,env(safe-area-inset-left)) 8px}
+ .game-mode header,.boot-mode header{gap:8px;flex-wrap:wrap}
+ .game-mode .headline{padding:8px 2px}
+ .game-mode .console-front{padding:6px 5px 8px}
+ .game-mode .device-label{font-size:8px;letter-spacing:.5px;padding-bottom:5px}
+ .game-mode .hud{padding:8px;font-size:9px;min-width:0}
+ .game-mode .catch-hud{gap:5px}
+ .game-mode .catch-hud b{font-size:13px}
+ .game-mode .catch-hud #combo{font-size:8px;letter-spacing:0}
+ .game-mode .device-controls{margin-top:6px}
+ .game-mode .buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+ .game-mode .buttons button{width:100%;min-width:0;min-height:40px;white-space:normal;font-size:10px;padding:7px 4px}
+ .game-mode .screen-bottom{font-size:7px;letter-spacing:0;padding:6px 7px}
+ .game-mode .panel h2{font-size:clamp(20px,6vw,28px)}
+ .game-mode .panel{padding:12px 8px}
+ .game-mode .panel .cat-icon{font-size:24px}
+ .game-mode .primary{padding:11px 16px}
+}
+@media(max-height:500px){
+ .game-mode .headline{display:none}
+ .game-mode .device-label{display:none}
+ .game-mode .device-controls{margin-top:5px}
+ .game-mode .control-help{display:none}
+ .game-mode .buttons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;gap:4px}
+ .game-mode .buttons button{padding:6px 3px;font-size:9px;min-height:36px;min-width:0;white-space:normal}
+ .game-mode .hud{padding:5px 8px}
+ .game-mode .screen-bottom{padding:4px 7px}
+ .game-mode .panel .cat-icon,.game-mode .panel .hint,.game-mode .panel .record{display:none}
+ .game-mode .panel{justify-content:flex-start}
+}
