@@ -21,10 +21,23 @@ body.intro-active main{visibility:hidden}
 .kitty-insert .cartridge,.ci-cart.cloned .cartridge{box-shadow:0 3px 0 #667b71,0 6px 10px #25382f33}
 @media(prefers-reduced-motion:reduce){.kitty-insert{transition:none}}
 /* BUNNY COIN DASH カセット（VOL.03）: 3本目は中央に同じ大きさで配置 */
-.cartridge-card[data-game="bunny"]{grid-column:1/-1;justify-self:center;width:calc(50% - 20px)}
-@media(max-width:650px){.cartridge-card[data-game="bunny"]{width:calc(50% - 11px)}}
+.cartridges>.cartridge-card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 20px)}
+@media(max-width:650px){.cartridges>.cartridge-card:last-child:nth-child(odd){width:calc(50% - 11px)}}
 .bunny-cartridge{background:linear-gradient(135deg,#bfe3cf,#96c9b4);border-color:#78a893;box-shadow:0 8px 0 #6f9c88,0 22px 35px #25382f22}
 .bunny-cartridge .cart-ridges{background:repeating-linear-gradient(0deg,transparent 0 3px,#6f9c8877 3px 5px)}
 .bunny-cartridge .cart-label{background:#fff4dc;border-color:#86ad98}
 .bunny-cartridge .cart-label strong{color:#4a3a46;font-size:clamp(14px,2.4vw,26px)}
 .bunny-cartridge .cart-label>span,.bunny-cartridge .cart-label small{color:#7d6a52}
+/* KITTY FLAP (VOL.04) / KITTY MERGE (VOL.05) */
+.flap-cartridge{background:linear-gradient(135deg,#c8b6e6,#a48fcf);border-color:#8a76b3;box-shadow:0 8px 0 #7d6aa6,0 22px 35px #2b1b3022}
+.flap-cartridge .cart-ridges{background:repeating-linear-gradient(0deg,transparent 0 3px,#7d6aa677 3px 5px)}
+.flap-cartridge .cart-label{background:#2f2140;border-color:#8a76b3}
+.flap-cartridge .cart-label>span,.flap-cartridge .cart-label small{color:#d9c8f2}
+.flap-cartridge .cart-label strong{color:#fff0f8}
+.merge-cartridge{background:linear-gradient(135deg,#ffe3a6,#f5c66f);border-color:#c79a4a;box-shadow:0 8px 0 #b98a3c,0 22px 35px #4a321522}
+.merge-cartridge .cart-ridges{background:repeating-linear-gradient(0deg,transparent 0 3px,#b98a3c77 3px 5px)}
+.merge-cartridge .cart-label{background:#fde9f3;border-color:#c79a4a}
+.merge-cartridge .cart-label>span,.merge-cartridge .cart-label small{color:#8a5a6e}
+.merge-cartridge .cart-label strong{color:#4a3a46}
+.flap-mode #game,.merge-mode #game{image-rendering:pixelated}
+.flap-mode .viewport,.merge-mode .viewport{background:#24152a}
