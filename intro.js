@@ -2,6 +2,11 @@
 // Shared cassette boot intro. playCassetteIntro({title}) -> Promise resolved when the game should be visible.
 (function(){
 // fix版: 差し込むカセットを一覧のカセットと同じデザイン・縦横比にする（一覧のDOMを複製して縮小）。
+
+// 本体画像(handheld_back.png 840x1280)の実測: 上端の見える縁 y=37, カセット収納くぼみの下端 y≈304
+window.KITTY_TOP=37/1280;window.KITTY_SLOT_BOTTOM=304/1280;
+// カセットを「くぼみの下端より下は本体の中」に見せるクリップ窓で包む。off=窓の上方向の余白(px)
+window.kittySlot=function(el,backH){let w=el.parentElement;if(!w.classList.contains('kitty-slot')){w=document.createElement('div');w.className='kitty-slot';el.parentElement.insertBefore(w,el);w.appendChild(el)}const off=Math.ceil(backH*1.2+60);Object.assign(w.style,{position:'absolute',left:'0',right:'0',top:-off+'px',height:(off+backH*window.KITTY_SLOT_BOTTOM)+'px',overflow:'hidden',pointerEvents:'none',zIndex:'1'});return {wrap:w,off}};
 window.kittyCartSource=function(game){
  const listed=document.querySelector('[data-game="'+game+'"] .cartridge');if(listed&&listed.getBoundingClientRect().width)return listed;
  if(game!=='catch')return null;
@@ -42,7 +47,7 @@ window.playCassetteIntro=function({title='KITTY CATCH'}={}){
    cam.style.transform=`translate(${vw/2-(sx+sw/2)*k}px,${vh/2-(sy+sh/2)*k}px) scale(${k})`;
   }
   layout();addEventListener('resize',layout);
-  try{const sw=parseFloat(stage.style.width);if(window.kittyCloneCart(cart,/SURVIVOR/.test(title)?'survivor':'catch',sw*.5)){cart.style.left=(sw*.25)+'px';cart.style.top='-6%'}}catch(e){/* 複製できなければ従来のカセット表示のまま */}
+  try{const sw=parseFloat(stage.style.width);const sh=parseFloat(stage.style.height);if(window.kittyCloneCart(cart,/SURVIVOR/.test(title)?'survivor':'catch',sw*.6)){const slot=window.kittySlot(cart,sh);cart.style.left=(sw*.2)+'px';cart.style.top=(slot.off+sh*window.KITTY_TOP)+'px'}}catch(e){/* 複製できなければ従来のカセット表示のまま */}
   function finish(){if(finished)return;finished=true;removeEventListener('resize',layout);root.classList.add('done');document.body.classList.remove('intro-active');resolve();setTimeout(()=>root.remove(),500)}
   const skip=e=>{e?.preventDefault?.();finish()};
   root.addEventListener('pointerdown',skip);addEventListener('keydown',function k(e){if(finished){removeEventListener('keydown',k);return}removeEventListener('keydown',k);skip(e)});

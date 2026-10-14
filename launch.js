@@ -11,7 +11,7 @@ async function launch(game){
  cart.querySelector('strong').textContent=game==='survivor'?'KITTY SURVIVOR':'KITTY CATCH';
  document.body.classList.remove('library-mode');document.body.classList.add('boot-mode');
  window.fitKittyLayout?.();
- if(window.kittyCloneCart){const t=cart.parentElement,tw=(document.querySelector('.console-turntable')||t).getBoundingClientRect().width;let ins=document.getElementById('insertclone');if(!ins){ins=document.createElement('div');ins.id='insertclone';ins.className='kitty-insert';ins.setAttribute('aria-hidden','true');t.appendChild(ins)}if(tw&&window.kittyCloneCart(ins,game,tw*.5,src,srcRect)){const h=parseFloat(ins.style.height),th=(document.querySelector('.console-turntable')||t).getBoundingClientRect().height||1;ins.style.setProperty('--cart-from',-(h+40)+'px');ins.style.setProperty('--cart-to',(-0.06*th)+'px');cart.classList.add('replaced')}}
+ if(window.kittyCloneCart){const t=cart.parentElement,tw=(document.querySelector('.console-turntable')||t).getBoundingClientRect().width;let ins=document.getElementById('insertclone');if(!ins){ins=document.createElement('div');ins.id='insertclone';ins.className='kitty-insert';ins.setAttribute('aria-hidden','true');t.appendChild(ins)}if(tw&&window.kittyCloneCart(ins,game,tw*.6,src,srcRect)){const h=parseFloat(ins.style.height),th=(document.querySelector('.console-turntable')||t).getBoundingClientRect().height||1,slot=window.kittySlot(ins,th);ins.style.setProperty('--cart-from',(slot.off-h-40)+'px');ins.style.setProperty('--cart-to',(slot.off+th*window.KITTY_TOP)+'px');cart.classList.add('replaced')}}
  window.scrollTo({top:0,behavior:'instant'});
  const caption=document.getElementById('sequencecaption');
  caption.textContent='本体を裏返しています';
