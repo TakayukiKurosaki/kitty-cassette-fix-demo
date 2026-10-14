@@ -1,0 +1,12 @@
+/* BUNNY COIN DASH: スマホ用タッチ操作 + 戻るボタン（Godot Web 書き出しに後付け） */
+body{background:#f7e9ef!important}
+#bunny-bar{position:fixed;right:8px;top:8px;z-index:20;display:flex;gap:6px;font-family:Arial,sans-serif}
+#bunny-bar a{background:#fff8f2e6;color:#5a3d4c;border:1px solid #c99bb0;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;text-decoration:none}
+#bunny-touch{position:fixed;inset:0;z-index:15;pointer-events:none;display:none;touch-action:none;user-select:none;-webkit-user-select:none}
+.show-touch #bunny-touch{display:block}
+#bunny-pad{position:absolute;left:max(18px,env(safe-area-inset-left));bottom:max(26px,env(safe-area-inset-bottom));width:140px;height:140px;border-radius:50%;background:#ffffff55;border:2px solid #ffffffaa;box-shadow:0 4px 14px #6a3b5333;pointer-events:auto;touch-action:none}
+#bunny-knob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:#ffd3e6;border:2px solid #fff;box-shadow:0 3px 8px #6a3b5355}
+.bunny-btn{position:absolute;border-radius:50%;border:2px solid #fff;color:#5a3d4c;font:900 15px Arial,sans-serif;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none;box-shadow:0 4px 12px #6a3b5344}
+#bunny-jump{right:max(22px,env(safe-area-inset-right));bottom:max(40px,env(safe-area-inset-bottom));width:88px;height:88px;background:#ffe6a6e6}
+#bunny-dash{right:max(118px,calc(env(safe-area-inset-right) + 118px));bottom:max(22px,env(safe-area-inset-bottom));width:64px;height:64px;background:#c8ecf5e6;font-size:12px}
+.bunny-btn.on{filter:brightness(.88);transform:scale(.95)}

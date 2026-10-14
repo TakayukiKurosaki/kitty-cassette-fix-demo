@@ -20,3 +20,11 @@ body.intro-active main{visibility:hidden}
 .ci-cart.cloned{background:none;border:0;box-shadow:none;display:block;padding:0}
 .kitty-insert .cartridge,.ci-cart.cloned .cartridge{box-shadow:0 3px 0 #667b71,0 6px 10px #25382f33}
 @media(prefers-reduced-motion:reduce){.kitty-insert{transition:none}}
+/* BUNNY COIN DASH カセット（VOL.03）: 3本目は中央に同じ大きさで配置 */
+.cartridge-card[data-game="bunny"]{grid-column:1/-1;justify-self:center;width:calc(50% - 20px)}
+@media(max-width:650px){.cartridge-card[data-game="bunny"]{width:calc(50% - 11px)}}
+.bunny-cartridge{background:linear-gradient(135deg,#bfe3cf,#96c9b4);border-color:#78a893;box-shadow:0 8px 0 #6f9c88,0 22px 35px #25382f22}
+.bunny-cartridge .cart-ridges{background:repeating-linear-gradient(0deg,transparent 0 3px,#6f9c8877 3px 5px)}
+.bunny-cartridge .cart-label{background:#fff4dc;border-color:#86ad98}
+.bunny-cartridge .cart-label strong{color:#4a3a46;font-size:clamp(14px,2.4vw,26px)}
+.bunny-cartridge .cart-label>span,.bunny-cartridge .cart-label small{color:#7d6a52}
